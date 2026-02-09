@@ -1,0 +1,55 @@
+use largedata1;
+
+select distinct department from employees order by department desc;
+
+select * from employees order by department;
+
+select gender,count(gender) from employees group by gender;
+
+select department,sum(salary) from employees group by department;
+
+-- Total experience for each department?
+
+select department,sum(experience) as Total_ex from employees group by department;
+
+-- Maximum salary in each gender?
+
+select gender,sum(salary) as Max_sal from employees group by gender;
+
+
+-- List of genders and number of employees earning above 60,000?
+
+SELECT gender, COUNT(id) AS employee_count
+FROM employees
+WHERE salary > 60000 GROUP BY gender; 
+
+-- 1. Find Department Where the Minimum Salary is Greater Than 50,000
+
+SELECT department, MIN(salary) AS min_salary
+FROM employees
+GROUP BY department having MIN(salary) >= 80000;
+
+-- 2. Find Genders Where the Maximum Salary is Greater Than 80,000
+
+SELECT gender, MAX(salary) AS max_salary
+FROM employees
+GROUP BY gender
+HAVING MAX(salary) > 80000;
+
+-- 3. Find Department Where the Average Salary is Greater Than 60,000
+
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 60000;
+
+-- 4. Find Genders Where the Total Salary is Greater Than 70,000
+
+SELECT gender, SUM(salary) AS total_salary
+FROM employees
+GROUP BY gender
+HAVING SUM(salary) > 70000;
+
+Select gender,sum(salary) AS total_salary from employees group by 
+	gender having sum(salary) > 70000 order by total_salary desc;
+    
